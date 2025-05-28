@@ -1,0 +1,67 @@
+@font-face {
+    font-family: 'ByeMan';
+    src: url('siteres/font/ByeMan.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+    margin: 0;
+    padding: 40px;
+    background-color: #deb887;
+    /* base wood color (burlywood) */
+
+    /* Wood plank stripes */
+    background-image:
+        repeating-linear-gradient(90deg,
+            #d2a679,
+            #d2a679 30px,
+            #c28e51 30px,
+            #c28e51 40px),
+        repeating-linear-gradient(0deg,
+            rgba(255, 255, 255, 0.05),
+            rgba(255, 255, 255, 0.05) 2px,
+            transparent 2px,
+            transparent 4px);
+
+    background-size: 100% 40px, 100% 4px;
+    background-repeat: repeat, repeat;
+
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    box-sizing: border-box;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    max-height: 80vh;
+    /* Prevents images from being too tall */
+    border-radius: 4px;
+    /* rounded corner */
+    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.3);
+    object-fit: contain;
+}
+
+.rainbow-title {
+    text-align: center;
+    font-size: 5em;
+    font-weight: bold;
+    font-family: 'ByeMan', 'Comic Sans MS', 'Comic Sans', cursive;
+    background: linear-gradient(90deg, red, orange, yellow, green, blue, indigo, violet);
+    background-clip: text;
+    /* Standard property */
+    -webkit-background-clip: text;
+    /* WebKit-specific for Safari/Chrome */
+    -webkit-text-fill-color: transparent;
+    /* Makes gradient visible in WebKit */
+    color: transparent;
+    /* Fallback for other browsers */
+    padding-bottom: 30px;
+    margin-top: 0;
+
+    /* Nice soft shadow */
+    text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.3);
+}
