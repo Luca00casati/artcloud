@@ -1,6 +1,13 @@
 @font-face {
-    font-family: 'ByeMan';
-    src: url('siteres/font/ByeMan.otf') format('opentype');
+    font-family: 'Kredit';
+    src: url('siteres/font/kredit/Kredit.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Kredit Shine';
+    src: url('siteres/font/kredit/Kredit Shine.otf') format('opentype');
     font-weight: normal;
     font-style: normal;
 }
@@ -9,9 +16,7 @@ body {
     margin: 0;
     padding: 40px;
     background-color: #deb887;
-    /* base wood color (burlywood) */
 
-    /* Wood plank stripes */
     background-image:
         repeating-linear-gradient(90deg,
             #d2a679,
@@ -26,12 +31,12 @@ body {
 
     background-size: 100% 40px, 100% 4px;
     background-repeat: repeat, repeat;
-
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
     box-sizing: border-box;
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 40px;
 }
 
 img {
@@ -45,11 +50,31 @@ img {
     object-fit: contain;
 }
 
+a {
+    display: inline-block;
+    margin: 0 10px;
+    font-size: 3em;
+    text-decoration: none;
+    font-family: 'Kredit', 'Comic Sans MS', 'Comic Sans', cursive;
+    color: blue;
+    font-weight: bold;
+    padding-bottom: 20px;
+    margin-top: 0;
+
+    /* Nice soft shadow */
+    text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+a:hover {
+    text-decoration: underline;
+    color: darkblue;
+}
+
 .rainbow-title {
     text-align: center;
     font-size: 5em;
     font-weight: bold;
-    font-family: 'ByeMan', 'Comic Sans MS', 'Comic Sans', cursive;
+    font-family: 'Kredit', 'Comic Sans MS', 'Comic Sans', cursive;
     background: linear-gradient(90deg, red, orange, yellow, green, blue, indigo, violet);
     background-clip: text;
     /* Standard property */
@@ -59,7 +84,7 @@ img {
     /* Makes gradient visible in WebKit */
     color: transparent;
     /* Fallback for other browsers */
-    padding-bottom: 30px;
+    padding-bottom: 20px;
     margin-top: 0;
 
     /* Nice soft shadow */
