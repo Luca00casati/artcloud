@@ -31,7 +31,6 @@ body {
 
     background-size: 100% 40px, 100% 4px;
     background-repeat: repeat, repeat;
-    box-sizing: border-box;
 }
 
 .header {
@@ -39,11 +38,12 @@ body {
     margin-bottom: 40px;
 }
 
-.gallery{
+.gallery {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     gap: 20px;
+    box-sizing: border-box;
 }
 
 img {
