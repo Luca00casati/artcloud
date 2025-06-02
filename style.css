@@ -1,99 +1,110 @@
 @font-face {
-    font-family: 'Kredit';
-    src: url('siteres/font/kredit/Kredit.otf') format('opentype');
-    font-weight: normal;
-    font-style: normal;
+  font-family: "Kredit";
+  src: url("siteres/font/kredit/Kredit.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
 }
 
 @font-face {
-    font-family: 'Kredit Shine';
-    src: url('siteres/font/kredit/Kredit Shine.otf') format('opentype');
-    font-weight: normal;
-    font-style: normal;
+  font-family: "Kredit Shine";
+  src: url("siteres/font/kredit/Kredit Shine.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
 }
 
 body {
-    margin: 0;
-    padding: 40px;
-    background-color: #deb887;
+  margin: 0;
+  padding: 40px;
+  background-color: #deb887;
 
-    background-image:
-        repeating-linear-gradient(90deg,
-            #d2a679,
-            #d2a679 30px,
-            #c28e51 30px,
-            #c28e51 40px),
-        repeating-linear-gradient(0deg,
-            rgba(255, 255, 255, 0.05),
-            rgba(255, 255, 255, 0.05) 2px,
-            transparent 2px,
-            transparent 4px);
+  background-image:
+    repeating-linear-gradient(
+      90deg,
+      #d2a679,
+      #d2a679 30px,
+      #c28e51 30px,
+      #c28e51 40px
+    ),
+    repeating-linear-gradient(
+      0deg,
+      rgba(255, 255, 255, 0.05),
+      rgba(255, 255, 255, 0.05) 2px,
+      transparent 2px,
+      transparent 4px
+    );
 
-    background-size: 100% 40px, 100% 4px;
-    background-repeat: repeat, repeat;
+  background-size:
+    100% 40px,
+    100% 4px;
+  background-repeat: repeat, repeat;
+  box-sizing: border-box;
 }
 
 .header {
-    text-align: center;
-    margin-bottom: 40px;
+  text-align: center;
+  margin-bottom: 40px;
 }
 
 .gallery {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
-    box-sizing: border-box;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
 }
 
 img {
-    max-width: 100%;
-    height: auto;
-    max-height: 80vh;
-    /* Prevents images from being too tall */
-    border-radius: 4px;
-    /* rounded corner */
-    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.3);
-    object-fit: contain;
+  max-width: 100%;
+  height: auto;
+  max-height: 80vh;
+  border-radius: 4px;
+  box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.3);
+  object-fit: contain;
 }
 
 a {
-    display: inline-block;
-    margin: 0 10px;
-    font-size: 3em;
-    text-decoration: none;
-    font-family: 'Kredit', 'Comic Sans MS', 'Comic Sans', cursive;
-    color: blue;
-    font-weight: bold;
-    padding-bottom: 20px;
-    margin-top: 0;
-
-    /* Nice soft shadow */
-    text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.3);
+  position: relative;
+  display: inline-block;
+  font-size: 3em;
+  font-family: "Kredit", "Comic Sans MS", "Comic Sans", cursive;
+  color: #000;
+  font-weight: normal;
+  text-decoration: none;
+  padding-bottom: 20px;
+  margin: 0 10px 0 10px;
+  text-decoration: underline;
+  text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.3);
 }
 
-a:hover {
-    text-decoration: underline;
-    color: darkblue;
+a::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  font-family: "Kredit Shine", "Comic Sans MS", "Comic Sans", cursive;
+  color: #fff;
+  pointer-events: none;
+  mix-blend-mode: screen; /* Optional: adjust for effect */
+  z-index: 1;
 }
 
-.rainbow-title {
-    text-align: center;
-    font-size: 5em;
-    font-weight: bold;
-    font-family: 'Kredit', 'Comic Sans MS', 'Comic Sans', cursive;
-    background: linear-gradient(90deg, red, orange, yellow, green, blue, indigo, violet);
-    background-clip: text;
-    /* Standard property */
-    -webkit-background-clip: text;
-    /* WebKit-specific for Safari/Chrome */
-    -webkit-text-fill-color: transparent;
-    /* Makes gradient visible in WebKit */
-    color: transparent;
-    /* Fallback for other browsers */
-    padding-bottom: 20px;
-    margin-top: 0;
+/* Overlay Text Effect */
+.overlay-text {
+  position: relative;
+  display: inline-block;
+  font-family: "Kredit";
+  font-size: 5em;
+  font-weight: normal;
+  color: #000; /* base color */
+  text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.3);
+}
 
-    /* Nice soft shadow */
-    text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.3);
+.overlay-text::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  font-family: "Kredit Shine";
+  color: #fff;
+  pointer-events: none;
+  mix-blend-mode: screen; /* optional: for shine effect */
 }
