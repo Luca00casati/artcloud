@@ -65,10 +65,17 @@ if duplicates:
     print("Duplicate files found in multiple groups:")
     for d in duplicates:
         print(d)
+    exit(1)
 
 # Loop through all files in the directory
 for filename in os.listdir(directory):
     dir_files.append(filename)
+
+missing_files = [img for img in all_grouped if img not in dir_files]
+if missing_files:
+    print("missing file:")
+    print(missing_files)
+    exit(1)
 
 # Combine all categorized files
 categorized_files = set(bello_img + brutto_img + mhe_img)
@@ -79,6 +86,7 @@ ungruped_files = [f for f in dir_files if f not in categorized_files]
 if ungruped_files:
     print("ungruped file:")
     print(ungruped_files)
+    exit(1)
 
 print("CHECK DONE")
 
