@@ -2,16 +2,6 @@
 import os
 from collections import Counter
 
-redirect_script = """
-<!-- redirect -->
-<script>
-    // If the current path is exactly "/"
-    if (window.location.pathname === "/") {
-        window.location.replace("/bello.html");
-    }
-</script>
-"""
-
 header = """
 <!doctype html>
 <html lang="it">
@@ -87,17 +77,12 @@ if ungruped_files:
 
 print("CHECK DONE")
 
-with open("index.html", "w") as f:
+with open("all.html", "w") as f:
     f.write(header)
-    f.write(redirect_script)
-    f.write(
-    """
-    <title>Galleria delle mie opere artistiche</title>
+    f.write("""<title>Galleria delle mie opere artistiche</title>
     </head>
     <body>
-    <h1>Galleria delle mie opere artistiche</h1>
-    """
-    )
+    <h1>Galleria delle mie opere artistiche</h1>""")
     f.write(link)
     for all in all_grouped:
         name_without_ext = os.path.splitext(all)[0]
@@ -106,14 +91,11 @@ with open("index.html", "w") as f:
 
 with open("bello.html", "w") as f:
     f.write(header)
-    f.write(
-    """
+    f.write("""
     <title>Galleria delle mie opere artistiche belle</title>
     </head>
     <body>
-    <h1>Galleria delle mie opere artistiche belle</h1>
-    """
-    )
+    <h1>Galleria delle mie opere artistiche belle</h1>""")
     f.write(link)
     for bello in bello_img:
         name_without_ext = os.path.splitext(bello)[0]
@@ -122,14 +104,11 @@ with open("bello.html", "w") as f:
 
 with open("mhe.html", "w") as f:
     f.write(header)
-    f.write(
-    """
+    f.write("""
     <title>Galleria delle mie opere artistiche mhe</title>
     </head>
     <body>
-    <h1 >Galleria delle mie opere artistiche mhe</h1>
-    """
-    )
+    <h1 >Galleria delle mie opere artistiche mhe</h1>""")
     f.write(link)
     for mhe in mhe_img:
         name_without_ext = os.path.splitext(mhe)[0]
@@ -138,14 +117,11 @@ with open("mhe.html", "w") as f:
 
 with open("brutto.html", "w") as f:
     f.write(header)
-    f.write(
-    """
+    f.write("""
     <title>Galleria delle mie opere artistiche brutte</title>
     </head>
     <body>
-    <h1>Galleria delle mie opere artistiche brutte</h1>
-    """
-    )
+    <h1>Galleria delle mie opere artistiche brutte</h1>""")
     f.write(link)
     for brutto in brutto_img:
         name_without_ext = os.path.splitext(brutto)[0]
