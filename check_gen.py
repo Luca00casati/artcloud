@@ -17,7 +17,7 @@ link = '''
 <a href="bello.html">BELLO</a>
 <a href="mhe.html">MHE</a>
 <a href="brutto.html">BRUTTO</a>
-<a href="index.html">TUTTO</a>
+<a href="tutto.html">TUTTO</a>
 </nav>
 '''
 
@@ -77,12 +77,12 @@ if ungruped_files:
 
 print("CHECK DONE")
 
-with open("all.html", "w") as f:
+with open("tutto.html", "w") as f:
     f.write(header)
-    f.write("""<title>Galleria delle mie opere artistiche</title>
+    f.write("""<title>Galleria delle mie opere artistiche tutte</title>
     </head>
     <body>
-    <h1>Galleria delle mie opere artistiche</h1>""")
+    <h1>Galleria delle mie opere artistiche tutte</h1>""")
     f.write(link)
     for all in all_grouped:
         name_without_ext = os.path.splitext(all)[0]
