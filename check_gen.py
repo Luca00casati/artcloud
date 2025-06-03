@@ -27,6 +27,13 @@ header = """
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 """
 
+link = '''
+      <a href="bello.html">BELLO</a>
+      <a href="mhe.html">MHE</a>
+      <a href="brutto.html">BRUTTO</a>
+      <a href="index.html">TUTTO</a>
+'''
+
 directory = "opere"
 dir_files = []
 
@@ -84,16 +91,11 @@ with open("index.html", "w") as f:
   </head>
 
   <body>
-    <div class="header">
-      <h1 class="overlay-text">Galleria delle mie opere artistiche</h1>
-      <a href="bello.html">BELLO</a>
-      <a href="mhe.html">MHE</a>
-      <a href="brutto.html">BRUTTO</a>
-      <a href="index.html">TUTTO</a>
-    </div>
-    <div class="gallery">
+      <div class="container">
+      <h1>Galleria delle mie opere artistiche</h1>
     """
     )
+    f.write(link)
     for all in all_grouped:
         name_without_ext = os.path.splitext(all)[0]
         f.write(f'<img src="{directory}/{all}" alt="{name_without_ext}" />')
@@ -107,16 +109,11 @@ with open("bello.html", "w") as f:
   </head>
 
   <body>
-    <div class="header">
-      <h1 class="overlay-text">Galleria delle mie opere artistiche belle</h1>
-      <a href="bello.html">BELLO</a>
-      <a href="mhe.html">MHE</a>
-      <a href="brutto.html">BRUTTO</a>
-      <a href="index.html">TUTTO</a>
-    </div>
-    <div class="gallery">
+          <div class="container">
+      <h1>Galleria delle mie opere artistiche belle</h1>
     """
     )
+    f.write(link)
     for bello in bello_img:
         name_without_ext = os.path.splitext(bello)[0]
         f.write(f'<img src="{directory}/{bello}" alt="{name_without_ext}" />')
@@ -130,16 +127,11 @@ with open("mhe.html", "w") as f:
   </head>
 
   <body>
-    <div class="header">
-      <h1 class="overlay-text">Galleria delle mie opere artistiche mhe</h1>
-      <a href="bello.html">BELLO</a>
-      <a href="mhe.html">MHE</a>
-      <a href="brutto.html">BRUTTO</a>
-      <a href="index.html">TUTTO</a>
-    </div>
-    <div class="gallery">
+         <div class="container">
+      <h1 >Galleria delle mie opere artistiche mhe</h1>
     """
     )
+    f.write(link)
     for mhe in mhe_img:
         name_without_ext = os.path.splitext(mhe)[0]
         f.write(f'<img src="{directory}/{mhe}" alt="{name_without_ext}" />')
@@ -153,16 +145,11 @@ with open("brutto.html", "w") as f:
   </head>
 
   <body>
-    <div class="header">
-      <h1 class="overlay-text">Galleria delle mie opere artistiche brutte</h1>
-      <a href="bello.html">BELLO</a>
-      <a href="mhe.html">MHE</a>
-      <a href="brutto.html">BRUTTO</a>
-      <a href="index.html">TUTTO</a>
-    </div>
-    <div class="gallery">
+         <div class="container">
+      <h1>Galleria delle mie opere artistiche brutte</h1>
     """
     )
+    f.write(link)
     for brutto in brutto_img:
         name_without_ext = os.path.splitext(brutto)[0]
         f.write(f'<img src="{directory}/{brutto}" alt="{name_without_ext}" />')
