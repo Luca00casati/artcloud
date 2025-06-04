@@ -10,6 +10,7 @@ header = """
 <link rel="stylesheet" href="style.css" />
 <link rel="icon" href="siteres/icon/favicon.svg" type="image/svg+xml" />
 <meta charset="UTF-8" />
+<meta name="description" content="La Mia Galleria presenta una collezione curata di opere d'arte artigianali e creazioni esclusive per amanti dell'estetica e della qualità.">
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 """
 
