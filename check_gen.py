@@ -22,28 +22,30 @@ link = '''
 '''
 
 directory = "opere"
+directory_avif = "opere_avif"
 dir_files = []
+dir_files_avif = []
 
 bello_img = [
-    "gengar.png",
-    "man.png",
-    "Puccinipaint.png",
-    "charmanderapaint.png",
-    "miku.png",
-    "tauros.png",
+    "gengar.avif",
+    "man.avif",
+    "Puccinipaint.avif",
+    "charmanderapaint.avif",
+    "miku.avif",
+    "tauros.avif",
 ]
 
 brutto_img = [
-    "casa1.png",
-    "casa2.png",
-    "casa3.png",
-    "pikachu1.png",
-    "pikachu1color.png",
-    "mew.png",
-    "mewcolors.png",
+    "casa1.avif",
+    "casa2.avif",
+    "casa3.avif",
+    "pikachu1.avif",
+    "pikachu1color.avif",
+    "mew.avif",
+    "mewcolors.avif",
 ]
 
-mhe_img = ["smart.png", "chr.png", "focaccina.png", "bho.png", "faccia.png"]
+mhe_img = ["smart.avif", "chr.avif", "focaccina.avif", "bho.avif", "faccia.avif"]
 
 all_grouped = bello_img + brutto_img + mhe_img
 duplicates = [item for item, count in Counter(all_grouped).items() if count > 1]
@@ -58,7 +60,17 @@ if duplicates:
 for filename in os.listdir(directory):
     dir_files.append(filename)
 
-missing_files = [img for img in all_grouped if img not in dir_files]
+for filename in os.listdir(directory_avif):
+    dir_files_avif.append(filename)
+
+non_png_files = [f for f in dir_files if not f.lower().endswith(".png")]
+
+if non_png_files:
+    print("Non PNG file found:")
+    print(non_png_files)
+    exit(1)
+
+missing_files = [img for img in all_grouped if img not in dir_files_avif]
 if missing_files:
     print("missing file:")
     print(missing_files)
@@ -68,7 +80,7 @@ if missing_files:
 categorized_files = set(bello_img + brutto_img + mhe_img)
 
 # Filter out categorized files
-ungruped_files = [f for f in dir_files if f not in categorized_files]
+ungruped_files = [f for f in dir_files_avif if f not in categorized_files]
 
 if ungruped_files:
     print("ungruped file:")
@@ -86,7 +98,7 @@ with open("tutto.html", "w") as f:
     f.write(link)
     for all in all_grouped:
         name_without_ext = os.path.splitext(all)[0]
-        f.write(f'<img src="{directory}/{all}" alt="{name_without_ext}" />\n')
+        f.write(f'<img src="{directory_avif}/{all}" alt="{name_without_ext}" />\n')
     f.write("</body>\n</html>")
 
 with open("bello.html", "w") as f:
@@ -99,7 +111,7 @@ with open("bello.html", "w") as f:
     f.write(link)
     for bello in bello_img:
         name_without_ext = os.path.splitext(bello)[0]
-        f.write(f'<img src="{directory}/{bello}" alt="{name_without_ext}" />\n')
+        f.write(f'<img src="{directory_avif}/{bello}" alt="{name_without_ext}" />\n')
     f.write("</body>\n</html>")
 
 with open("mhe.html", "w") as f:
@@ -112,7 +124,7 @@ with open("mhe.html", "w") as f:
     f.write(link)
     for mhe in mhe_img:
         name_without_ext = os.path.splitext(mhe)[0]
-        f.write(f'<img src="{directory}/{mhe}" alt="{name_without_ext}" />\n')
+        f.write(f'<img src="{directory_avif}/{mhe}" alt="{name_without_ext}" />\n')
     f.write("</body>\n</html>")
 
 with open("brutto.html", "w") as f:
@@ -125,7 +137,7 @@ with open("brutto.html", "w") as f:
     f.write(link)
     for brutto in brutto_img:
         name_without_ext = os.path.splitext(brutto)[0]
-        f.write(f'<img src="{directory}/{brutto}" alt="{name_without_ext}" />\n')
+        f.write(f'<img src="{directory_avif}/{brutto}" alt="{name_without_ext}" />\n')
     f.write("</body>\n</html>")
 
 print("DONE GENERATE")
