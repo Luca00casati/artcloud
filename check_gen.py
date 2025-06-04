@@ -6,6 +6,7 @@ header = """
 <!doctype html>
 <html lang="it">
 <head>
+<link rel="preload" href="siteres/font/Kredit.otf" as="font" type="font/otf" crossorigin="anonymous">
 <link rel="stylesheet" href="style.css" />
 <link rel="icon" href="siteres/icon/favicon.svg" type="image/svg+xml" />
 <meta charset="UTF-8" />
@@ -27,25 +28,29 @@ dir_files = []
 dir_files_avif = []
 
 bello_img = [
-    "gengar.avif",
-    "man.avif",
-    "Puccinipaint.avif",
-    "charmanderapaint.avif",
-    "miku.avif",
-    "tauros.avif",
+    "gengar",
+    "man",
+    "Puccinipaint",
+    "charmanderapaint",
+    "miku",
+    "tauros",
 ]
 
 brutto_img = [
-    "casa1.avif",
-    "casa2.avif",
-    "casa3.avif",
-    "pikachu1.avif",
-    "pikachu1color.avif",
-    "mew.avif",
-    "mewcolors.avif",
+    "casa1",
+    "casa2",
+    "casa3",
+    "pikachu1",
+    "pikachu1color",
+    "mew",
+    "mewcolors",
 ]
 
-mhe_img = ["smart.avif", "chr.avif", "focaccina.avif", "bho.avif", "faccia.avif"]
+mhe_img = ["smart", "chr", "focaccina", "bho", "faccia"]
+
+bello_img = [f"{name}.avif" for name in bello_img]
+mhe_img = [f"{name}.avif" for name in mhe_img]
+brutto_img = [f"{name}.avif" for name in brutto_img]
 
 all_grouped = bello_img + brutto_img + mhe_img
 duplicates = [item for item, count in Counter(all_grouped).items() if count > 1]
@@ -98,7 +103,7 @@ with open("tutto.html", "w") as f:
     f.write(link)
     for all in all_grouped:
         name_without_ext = os.path.splitext(all)[0]
-        f.write(f'<img src="{directory_avif}/{all}" alt="{name_without_ext}" />\n')
+        f.write(f'<img loading="lazy" src="{directory_avif}/{all}" alt="{name_without_ext}" />\n')
     f.write("</body>\n</html>")
 
 with open("bello.html", "w") as f:
@@ -111,7 +116,7 @@ with open("bello.html", "w") as f:
     f.write(link)
     for bello in bello_img:
         name_without_ext = os.path.splitext(bello)[0]
-        f.write(f'<img src="{directory_avif}/{bello}" alt="{name_without_ext}" />\n')
+        f.write(f'<img loading="lazy" src="{directory_avif}/{bello}" alt="{name_without_ext}" />\n')
     f.write("</body>\n</html>")
 
 with open("mhe.html", "w") as f:
@@ -124,7 +129,7 @@ with open("mhe.html", "w") as f:
     f.write(link)
     for mhe in mhe_img:
         name_without_ext = os.path.splitext(mhe)[0]
-        f.write(f'<img src="{directory_avif}/{mhe}" alt="{name_without_ext}" />\n')
+        f.write(f'<img loading="lazy" src="{directory_avif}/{mhe}" alt="{name_without_ext}" />\n')
     f.write("</body>\n</html>")
 
 with open("brutto.html", "w") as f:
@@ -137,7 +142,7 @@ with open("brutto.html", "w") as f:
     f.write(link)
     for brutto in brutto_img:
         name_without_ext = os.path.splitext(brutto)[0]
-        f.write(f'<img src="{directory_avif}/{brutto}" alt="{name_without_ext}" />\n')
+        f.write(f'<img loading="lazy" src="{directory_avif}/{brutto}" alt="{name_without_ext}" />\n')
     f.write("</body>\n</html>")
 
 print("DONE GENERATE")
