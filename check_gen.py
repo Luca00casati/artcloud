@@ -1,6 +1,7 @@
 #!/bin/python3
 import os
 from collections import Counter
+from PIL import Image
 
 header = """
 <!doctype html>
@@ -10,7 +11,8 @@ header = """
 <link rel="stylesheet" href="style.css" />
 <link rel="icon" href="siteres/icon/favicon.svg" type="image/svg+xml" />
 <meta charset="UTF-8" />
-<meta name="description" content="La Mia Galleria presenta una collezione curata di opere d'arte artigianali e creazioni esclusive per amanti dell'estetica e della qualità.">
+<meta name="description" content="La Mia Galleria presenta una collezione curata
+ di opere d'arte artigianali e creazioni esclusive per amanti dell'estetica e della qualità.">
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 """
 
@@ -24,9 +26,9 @@ link = '''
 '''
 
 directory = "opere"
-directory_avif = "opere_avif"
+directory_webp = "opere_webp"
 dir_files = []
-dir_files_avif = []
+dir_files_webp = []
 
 bello_img = [
     "gengar",
@@ -49,9 +51,9 @@ brutto_img = [
 
 mhe_img = ["smart", "chr", "focaccina", "bho", "faccia"]
 
-bello_img = [f"{name}.avif" for name in bello_img]
-mhe_img = [f"{name}.avif" for name in mhe_img]
-brutto_img = [f"{name}.avif" for name in brutto_img]
+bello_img = [f"{name}.webp" for name in bello_img]
+mhe_img = [f"{name}.webp" for name in mhe_img]
+brutto_img = [f"{name}.webp" for name in brutto_img]
 
 all_grouped = bello_img + brutto_img + mhe_img
 duplicates = [item for item, count in Counter(all_grouped).items() if count > 1]
@@ -62,12 +64,8 @@ if duplicates:
         print(d)
     exit(1)
 
-# Loop through all files in the directory
 for filename in os.listdir(directory):
     dir_files.append(filename)
-
-for filename in os.listdir(directory_avif):
-    dir_files_avif.append(filename)
 
 non_png_files = [f for f in dir_files if not f.lower().endswith(".png")]
 
@@ -76,7 +74,28 @@ if non_png_files:
     print(non_png_files)
     exit(1)
 
-missing_files = [img for img in all_grouped if img not in dir_files_avif]
+os.makedirs(directory_webp, exist_ok=True)
+
+for filename in os.listdir(directory):
+        png_path = os.path.join(directory, filename)
+        
+        # Open the image
+        with Image.open(png_path) as img:
+            # Convert to RGB (to avoid issues with PNGs with transparency)
+            img = img.convert('RGB')
+
+            base_name = os.path.splitext(filename)[0]
+            webp_path = os.path.join(directory_webp, f"{base_name}.webp")
+
+            img.save(webp_path, 'webp')
+
+print("GEN WEB")
+
+
+for filename in os.listdir(directory_webp):
+    dir_files_webp.append(filename)
+
+missing_files = [img for img in all_grouped if img not in dir_files_webp]
 if missing_files:
     print("missing file:")
     print(missing_files)
@@ -86,7 +105,7 @@ if missing_files:
 categorized_files = set(bello_img + brutto_img + mhe_img)
 
 # Filter out categorized files
-ungruped_files = [f for f in dir_files_avif if f not in categorized_files]
+ungruped_files = [f for f in dir_files_webp if f not in categorized_files]
 
 if ungruped_files:
     print("ungruped file:")
@@ -104,7 +123,7 @@ with open("tutto.html", "w") as f:
     f.write(link)
     for all in all_grouped:
         name_without_ext = os.path.splitext(all)[0]
-        f.write(f'<img loading="lazy" src="{directory_avif}/{all}" alt="{name_without_ext}" />\n')
+        f.write(f'<img loading="lazy" src="{directory_webp}/{all}" alt="{name_without_ext}" />\n')
     f.write("</body>\n</html>")
 
 with open("bello.html", "w") as f:
@@ -117,7 +136,7 @@ with open("bello.html", "w") as f:
     f.write(link)
     for bello in bello_img:
         name_without_ext = os.path.splitext(bello)[0]
-        f.write(f'<img loading="lazy" src="{directory_avif}/{bello}" alt="{name_without_ext}" />\n')
+        f.write(f'<img loading="lazy" src="{directory_webp}/{bello}" alt="{name_without_ext}" />\n')
     f.write("</body>\n</html>")
 
 with open("mhe.html", "w") as f:
@@ -130,7 +149,7 @@ with open("mhe.html", "w") as f:
     f.write(link)
     for mhe in mhe_img:
         name_without_ext = os.path.splitext(mhe)[0]
-        f.write(f'<img loading="lazy" src="{directory_avif}/{mhe}" alt="{name_without_ext}" />\n')
+        f.write(f'<img loading="lazy" src="{directory_webp}/{mhe}" alt="{name_without_ext}" />\n')
     f.write("</body>\n</html>")
 
 with open("brutto.html", "w") as f:
@@ -143,7 +162,7 @@ with open("brutto.html", "w") as f:
     f.write(link)
     for brutto in brutto_img:
         name_without_ext = os.path.splitext(brutto)[0]
-        f.write(f'<img loading="lazy" src="{directory_avif}/{brutto}" alt="{name_without_ext}" />\n')
+        f.write(f'<img loading="lazy" src="{directory_webp}/{brutto}" alt="{name_without_ext}" />\n')
     f.write("</body>\n</html>")
 
 print("DONE GENERATE")
