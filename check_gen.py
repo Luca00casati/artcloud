@@ -37,6 +37,7 @@ bello_img = [
     "charmanderapaint",
     "miku",
     "tauros",
+    "firepunch"
 ]
 
 brutto_img = [
@@ -90,7 +91,6 @@ for filename in os.listdir(directory):
             img.save(webp_path, 'webp')
 
 print("GEN WEB")
-
 
 for filename in os.listdir(directory_webp):
     dir_files_webp.append(filename)
