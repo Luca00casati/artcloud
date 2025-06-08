@@ -16,14 +16,14 @@ header = """
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 """
 
-link = '''
+link = """
 <nav>
 <a href="bello.html">BELLO</a>
 <a href="mhe.html">MHE</a>
 <a href="brutto.html">BRUTTO</a>
 <a href="tutto.html">TUTTO</a>
 </nav>
-'''
+"""
 
 directory = "opere"
 directory_webp = "opere_webp"
@@ -37,7 +37,7 @@ bello_img = [
     "charmanderapaint",
     "miku",
     "tauros",
-    "firepunch"
+    "firepunch",
 ]
 
 brutto_img = [
@@ -50,7 +50,7 @@ brutto_img = [
     "mewcolors",
 ]
 
-mhe_img = ["smart", "chr", "focaccina", "bho", "faccia"]
+mhe_img = ["smart", "chr", "focaccina", "bho", "faccia", "clefable"]
 
 bello_img = [f"{name}.webp" for name in bello_img]
 mhe_img = [f"{name}.webp" for name in mhe_img]
@@ -78,17 +78,17 @@ if non_png_files:
 os.makedirs(directory_webp, exist_ok=True)
 
 for filename in os.listdir(directory):
-        png_path = os.path.join(directory, filename)
-        
-        # Open the image
-        with Image.open(png_path) as img:
-            # Convert to RGB (to avoid issues with PNGs with transparency)
-            img = img.convert('RGB')
+    png_path = os.path.join(directory, filename)
 
-            base_name = os.path.splitext(filename)[0]
-            webp_path = os.path.join(directory_webp, f"{base_name}.webp")
+    # Open the image
+    with Image.open(png_path) as img:
+        # Convert to RGB (to avoid issues with PNGs with transparency)
+        img = img.convert("RGB")
 
-            img.save(webp_path, 'webp')
+        base_name = os.path.splitext(filename)[0]
+        webp_path = os.path.join(directory_webp, f"{base_name}.webp")
+
+        img.save(webp_path, "webp")
 
 print("GEN WEB")
 
@@ -116,53 +116,69 @@ print("CHECK DONE")
 
 with open("tutto.html", "w") as f:
     f.write(header)
-    f.write("""<title>Galleria delle mie opere artistiche tutte</title>
+    f.write(
+        """<title>Galleria delle mie opere artistiche tutte</title>
     </head>
     <body>
-    <h1>Galleria delle mie opere artistiche tutte</h1>""")
+    <h1>Galleria delle mie opere artistiche tutte</h1>"""
+    )
     f.write(link)
     for all in all_grouped:
         name_without_ext = os.path.splitext(all)[0]
-        f.write(f'<img loading="lazy" src="{directory_webp}/{all}" alt="{name_without_ext}" />\n')
+        f.write(
+            f'<img loading="lazy" src="{directory_webp}/{all}" alt="{name_without_ext}" />\n'
+        )
     f.write("</body>\n</html>")
 
 with open("bello.html", "w") as f:
     f.write(header)
-    f.write("""
+    f.write(
+        """
     <title>Galleria delle mie opere artistiche belle</title>
     </head>
     <body>
-    <h1>Galleria delle mie opere artistiche belle</h1>""")
+    <h1>Galleria delle mie opere artistiche belle</h1>"""
+    )
     f.write(link)
     for bello in bello_img:
         name_without_ext = os.path.splitext(bello)[0]
-        f.write(f'<img loading="lazy" src="{directory_webp}/{bello}" alt="{name_without_ext}" />\n')
+        f.write(
+            f'<img loading="lazy" src="{directory_webp}/{bello}" alt="{name_without_ext}" />\n'
+        )
     f.write("</body>\n</html>")
 
 with open("mhe.html", "w") as f:
     f.write(header)
-    f.write("""
+    f.write(
+        """
     <title>Galleria delle mie opere artistiche mhe</title>
     </head>
     <body>
-    <h1 >Galleria delle mie opere artistiche mhe</h1>""")
+    <h1 >Galleria delle mie opere artistiche mhe</h1>"""
+    )
     f.write(link)
     for mhe in mhe_img:
         name_without_ext = os.path.splitext(mhe)[0]
-        f.write(f'<img loading="lazy" src="{directory_webp}/{mhe}" alt="{name_without_ext}" />\n')
+        f.write(
+            f'<img loading="lazy" src="{directory_webp}/{mhe}" alt="{name_without_ext}" />\n'
+        )
     f.write("</body>\n</html>")
 
 with open("brutto.html", "w") as f:
     f.write(header)
-    f.write("""
+    f.write(
+        """
     <title>Galleria delle mie opere artistiche brutte</title>
     </head>
     <body>
-    <h1>Galleria delle mie opere artistiche brutte</h1>""")
+    <h1>Galleria delle mie opere artistiche brutte</h1>"""
+    )
     f.write(link)
     for brutto in brutto_img:
         name_without_ext = os.path.splitext(brutto)[0]
-        f.write(f'<img loading="lazy" src="{directory_webp}/{brutto}" alt="{name_without_ext}" />\n')
+        f.write(
+            f'<img loading="lazy" src="{directory_webp}/{brutto}" alt="{name_without_ext}" />\n'
+        )
     f.write("</body>\n</html>")
 
 print("DONE GENERATE")
