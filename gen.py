@@ -57,7 +57,7 @@ with open("index.html", "w") as f:
     for all in dir_files:
         name_without_ext = os.path.splitext(all)[0]
         f.write(
-            f'<img loading="lazy" src="{directory_webp}/{all}" alt="{name_without_ext}" />\n'
+            f'<img loading="lazy" src="{directory_webp}/{name_without_ext}.webp" alt="{name_without_ext}" />\n'
         )
     f.write("</body>\n</html>")
 
