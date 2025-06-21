@@ -7,7 +7,7 @@ body {
 
 img {
   display: block;
-  margin: 80px auto;
+  margin: 80px auto 10px;
   max-width: 80vw;
   /* max width is viewport width */
   max-height: 80vh;
@@ -20,3 +20,9 @@ img {
   /* rounded corners */
 }
 
+p {
+  margin: 0;
+  padding-bottom: 80px;
+  font-size: clamp(0.8rem, 2vw, 1.5rem);
+  text-align: center;
+}
