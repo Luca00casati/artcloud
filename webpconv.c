@@ -18,14 +18,13 @@ void *convert_to_webp(void *arg) {
     const char *index = task->input_file;
     size_t original_len = strlen(index);
     char name[original_len - 10 + 1];
-    for (int j = 0, i = 6; i < original_len - 4; i++, j++){
+    for (size_t j = 0, i = 6; i < original_len - 4; i++, j++){
         name[j] = index[i];
     }
     name[original_len - 10] = '\0';
     // printf("%s\n", name);
-    size_t new_len = 15 + original_len - 10;
     char new_name[15 + original_len - 10 + 1]; 
-    snprintf(new_name, 15 + original_len - 10 + 1, "operejpeg/%s.jpeg", name);
+    snprintf(new_name, 15 + original_len - 10 + 1, "operewebp/%s.webp", name);
     // printf("%s\n", new_name);
 
      int width, height, channels;

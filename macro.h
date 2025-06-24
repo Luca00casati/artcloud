@@ -15,8 +15,8 @@
 </body> \
 </html>
 
-#define DIR operejpeg
-#define IMAGETYPE jpeg
+#define DIR operejwebp
+#define IMAGETYPE webp
 #define IMAGE(X) <img src=DIR/X.IMAGETYPE loading=lazy alt=X  /><p>X</p>
 
 //site
