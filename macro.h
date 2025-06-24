@@ -5,11 +5,9 @@
   <meta charset="UTF-8" /> \
   <meta name="viewport" content="width=device-width, initial-scale=1.0" /> \
   <link rel="icon" href="siteres/icon/favicon.svg" type="image/svg+xml" /> \
-  <title>La mia galleria</title> \
-<style>
+  <title>La mia galleria</title> 
 
 #define MACRO1 \
-</style> \
 </head> \
 <body>
 
@@ -17,7 +15,9 @@
 </body> \
 </html>
 
-#define IMAGE(X) <img src=opere/X.png alt=X  /><p>X</p>
+#define DIR operejpeg
+#define IMAGETYPE jpeg
+#define IMAGE(X) <img src=DIR/X.IMAGETYPE loading=lazy alt=X  /><p>X</p>
 
 //site
 MACRO0
