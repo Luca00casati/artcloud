@@ -1,4 +1,10 @@
-<!doctype html> <html lang="it"> <head> <meta charset="UTF-8" /> <meta name="viewport" content="width=device-width, initial-scale=1.0" /> <link rel="icon" href="siteres/icon/favicon.svg" type="image/svg+xml" /> <title>La mia galleria</title>
+<!doctype html>
+<html lang=it>
+<head>
+<meta charset=UTF-8 />
+<meta name=viewport content=width=device-width, initial-scale=1.0 />
+<link rel=icon href=siteres/icon/favicon.svg type=image/svg+xml />
+<title>La mia galleria</title>
 <style>
 @font-face {
   font-family: 'Bebas Neue';
@@ -7,6 +13,8 @@
   font-style: normal;
   font-display: swap;
 }
+
+
 body {
   margin: 0;
   padding-top: 40px;
@@ -14,16 +22,22 @@ body {
   background-color: lightgray;
   font-family: 'Bebas Neue';
 }
+
 img {
   display: block;
   margin: 80px auto 10px;
   max-width: 80vw;
+  /* max width is viewport width */
   max-height: 80vh;
+  /* max height is 80% of viewport height */
   width: auto;
   height: auto;
   object-fit: contain;
+  /* keeps aspect ratio */
   border-radius: 8px;
+  /* rounded corners */
 }
+
 p {
   margin: 0 auto;
   padding-bottom: 60px;
@@ -32,11 +46,19 @@ p {
    max-width: 80vw;
 }
 </style>
-</head> <body>
-<img src=operewebp/firepunch.webp loading=lazy alt=firepunch /><p>firepunch</p>
-<img src=operewebp/faccia.webp loading=lazy alt=faccia /><p>faccia</p>
-<img src=operewebp/rosa.webp loading=lazy alt=rosa /><p>rosa</p>
-<img src=operewebp/Puccini.webp loading=lazy alt=Puccini /><p>Puccini</p>
-<img src=operewebp/tauros.webp loading=lazy alt=tauros /><p>tauros</p>
-<img src=operewebp/frieren.webp loading=lazy alt=frieren /><p>frieren</p>
-</body> </html>
+</head>
+<body>
+<img src="operewebp/firepunch.webp" loading=lazy alt="firepunch"/>
+<p>firepunch</p>
+<img src="operewebp/faccia.webp" loading=lazy alt="faccia"/>
+<p>faccia</p>
+<img src="operewebp/rosa.webp" loading=lazy alt="rosa"/>
+<p>rosa</p>
+<img src="operewebp/Puccini.webp" loading=lazy alt="Puccini"/>
+<p>Puccini</p>
+<img src="operewebp/tauros.webp" loading=lazy alt="tauros"/>
+<p>tauros</p>
+<img src="operewebp/frieren.webp" loading=lazy alt="frieren"/>
+<p>frieren</p>
+</body>
+</html>
