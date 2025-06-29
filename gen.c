@@ -15,8 +15,13 @@
 #define QUALITY 70
 
 const char* images[] = {
-    "firepunch", "faccia", "rosa", "Puccini", "tauros", "frieren"
+    "firepunch", "faccia", "rosa", "Puccini", "tauros", "frieren", "viola"
 };
+
+// Comparison function for qsort
+int qsortstrcmp(const void *a, const void *b) {
+    return strcmp(*(const char **)a, *(const char **)b);
+}
 
 int remove_regular_files(const char *path) {
     DIR *dir = opendir(path);
@@ -93,6 +98,9 @@ int convert_to_webp(const char *input_file) {
 }
 
 int main(void) {
+    //sortimages
+    qsort(images, LENGTH(images), sizeof(char *), qsortstrcmp);
+
     // Ensure output directory exists
     mkdir("operewebp", 0755);
 
