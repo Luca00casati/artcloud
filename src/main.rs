@@ -1,66 +1,95 @@
-use std::fs::{self, File};
-use std::io::{self, Read, Write};
+use std::fs;
+use std::io::Write;
 use std::path::Path;
 
-fn main() -> io::Result<()> {
-    let image_dir = "opere";
+fn main() -> std::io::Result<()> {
+    let dir = Path::new("opere");
 
-    let mut images: Vec<String> = fs::read_dir(image_dir)?
-        .filter_map(|entry| entry.ok())
-        .filter_map(|entry| {
-            let path = entry.path();
-            if path.is_file() {
-                path.file_name().and_then(|s| s.to_str()).map(String::from)
-            } else {
-                None
-            }
-        })
-        .collect();
+    let mut png_files: Vec<String> = Vec::new();
 
-    images.sort_by(|a, b| a.to_lowercase().cmp(&b.to_lowercase()));
+    for entry in fs::read_dir(dir)? {
+        let entry = entry?;
+        let path = entry.path();
+        if path.is_file() {
+            let ext = path
+                .extension()
+                .and_then(|e| e.to_str())
+                .unwrap_or("")
+                .to_lowercase();
 
-    let mut fhtml = File::create("index.html")?;
+            assert!(
+                ext == "png",
+                "File {:?} is not a PNG image!",
+                path.file_name().unwrap()
+            );
 
-    writeln!(fhtml, r#"
-<!doctype html>
+            png_files.push(path.file_name().unwrap().to_string_lossy().to_string());
+        }
+    }
+
+    png_files.sort();
+
+    let mut html = String::from(
+        r#"<!DOCTYPE html>
 <html lang="it">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<link rel="icon" href="siteres/icon/favicon.svg" type="image/svg+xml" />
 <title>La mia galleria</title>
-"#)?;
+<style>
+body {
+  margin: 0;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  background-color: lightgray;
+  font-family: 'Bebas Neue', sans-serif;
+}
 
-    match File::open("style.css") {
-        Ok(mut fcss) => {
-            let mut css = String::new();
-            fcss.read_to_string(&mut css)?;
-            writeln!(fhtml, "<style>\n{}</style>", css)?;
-        }
-        Err(_) => {
-            eprintln!("error open css");
-            return Ok(());
-        }
-    }
+img {
+  display: block;
+  margin: 80px auto 10px;
+  max-width: 80vw;
+  max-height: 80vh;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  border-radius: 8px;
+}
 
-    writeln!(fhtml, r#"</head>
-<body>"#)?;
+p {
+  margin: 0 auto;
+  padding-bottom: 60px;
+  font-size: 10vh;
+  text-align: center;
+  max-width: 80vw;
+}
+</style>
+</head>
+<body>
+"#,
+    );
 
-    // Write image entries
-    for filename in &images {
-        let label = Path::new(filename)
+    for file in &png_files {
+        let alt_text = Path::new(file)
             .file_stem()
             .and_then(|s| s.to_str())
-            .unwrap_or("unknown");
+            .unwrap_or("");
 
-        writeln!(fhtml, r#"<img src="opere/{}" loading="lazy" alt="{}" />
-<p>{}</p>"#, filename, label, label)?;
+        html.push_str(&format!(
+            r#"<img src="opere/{}" loading="lazy" alt="{}" />
+<p>{}</p>
+"#,
+            file, alt_text, alt_text
+        ));
     }
 
-    writeln!(fhtml, r#"</body>
-</html>"#)?;
+    html.push_str("</body>\n</html>\n");
 
-    println!("DONE");
+    let mut file = fs::File::create("index.html")?;
+    file.write_all(html.as_bytes())?;
+
+    println!("index.html generated successfully with {} images.", png_files.len());
+
     Ok(())
 }
 
