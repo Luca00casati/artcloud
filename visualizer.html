@@ -184,7 +184,7 @@ function setupDragAndDrop() {
   window.addEventListener('dragover', (e) => {
     e.preventDefault();
     e.dataTransfer.dropEffect = 'copy';
-      document.body.style.border = '4px dashed ${color}';
+    document.body.style.border = `4px dashed ${color}`;
   });
 
   window.addEventListener('dragleave', (e) => {
